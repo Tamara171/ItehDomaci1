@@ -4,14 +4,14 @@ class User{
     public $id;
     public $username;
     public $password;
-    public $odeljenje;
+    
 
-    public function __construct($id=null,$username=null,$password=null, $odeljenje=null)
+    public function __construct($id=null,$username=null,$password=null)
     {
         $this->id = $id;
         $this->username = $username;
         $this->password = $password;
-        $this->odeljenje = $odeljenje;
+        
     }
 
     public static function logInUser($usr, mysqli $conn)
