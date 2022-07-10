@@ -1,14 +1,17 @@
+
+
 <?php
-$host = "localhost";
-$db = "bolnicka_apoteka";
+$server = "localhost";
 $user = "root";
-$pass = "";
+$password = "";
+$database = "bolnicka_apoteka";
 
-$conn = new mysqli($host,$user,$pass,$db);
-
-
-if ($conn->connect_errno){
-    exit("Nauspesna konekcija: greska> ".$conn->connect_error.", err kod>".$conn->connect_errno);
+global $mysqli;
+$mysqli= new mysqli($server, $user, $password, $database);
+if ($mysqli->error) {
+    printf("Connection failed: %s\n", $mysqli->error);
+    exit();
 }
+$mysqli->set_charset("utf8");
 
 ?>

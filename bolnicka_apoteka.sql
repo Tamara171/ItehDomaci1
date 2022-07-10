@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 30, 2022 at 07:35 PM
+-- Generation Time: May 01, 2022 at 02:17 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.3.31
 
@@ -29,19 +29,51 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `lekovi` (
   `sifraL` int(20) NOT NULL,
-  `naziv` varchar(11) NOT NULL,
+  `naziv` int(11) NOT NULL,
   `kolicina` decimal(10,0) NOT NULL,
-  `datum` date NOT NULL
+  `datum` date NOT NULL,
+  `odeljenje` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `lista`
+--
+
+CREATE TABLE `lista` (
+  `sifra` int(10) NOT NULL,
+  `nazivLeka` varchar(30) NOT NULL,
+  `mg` decimal(10,0) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `lekovi`
+-- Dumping data for table `lista`
 --
 
-INSERT INTO `lekovi` (`sifraL`, `naziv`, `kolicina`, `datum`) VALUES
-(4325322, 'Bensedin', '35', '2022-03-16'),
-(4325777, 'Paracetamol', '23', '2022-03-06'),
-(6543344, 'Penicilin', '22', '2022-03-04');
+INSERT INTO `lista` (`sifra`, `nazivLeka`, `mg`) VALUES
+(654, 'Paracetamol', '400'),
+(32142, 'Beviplex', '500');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `odeljenje`
+--
+
+CREATE TABLE `odeljenje` (
+  `id` int(11) NOT NULL,
+  `naziv` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `odeljenje`
+--
+
+INSERT INTO `odeljenje` (`id`, `naziv`) VALUES
+(1, 'Ginekologija'),
+(2, 'Pedijatrija'),
+(3, 'Hirurgija');
 
 -- --------------------------------------------------------
 
@@ -52,18 +84,17 @@ INSERT INTO `lekovi` (`sifraL`, `naziv`, `kolicina`, `datum`) VALUES
 CREATE TABLE `user` (
   `id` int(10) NOT NULL,
   `username` varchar(20) NOT NULL,
-  `password` varchar(20) NOT NULL,
-  `odeljenje` varchar(30) NOT NULL
+  `password` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `username`, `password`, `odeljenje`) VALUES
-(0, 'admin', 'admin', 'Finansije'),
-(1, 'ljubica', 'ljubica', 'Menazment'),
-(2, 'andjela', 'andjela', 'IT');
+INSERT INTO `user` (`id`, `username`, `password`) VALUES
+(0, 'admin', 'admin'),
+(1, 'ljubica', 'ljubica'),
+(2, 'andjela', 'andjela');
 
 --
 -- Indexes for dumped tables
@@ -74,6 +105,18 @@ INSERT INTO `user` (`id`, `username`, `password`, `odeljenje`) VALUES
 --
 ALTER TABLE `lekovi`
   ADD PRIMARY KEY (`sifraL`);
+
+--
+-- Indexes for table `lista`
+--
+ALTER TABLE `lista`
+  ADD PRIMARY KEY (`sifra`);
+
+--
+-- Indexes for table `odeljenje`
+--
+ALTER TABLE `odeljenje`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `user`
